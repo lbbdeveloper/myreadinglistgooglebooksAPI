@@ -20,6 +20,8 @@ import('./config/passport.js')
 
 // require routes
 import { router as indexRouter } from './routes/index.js'
+import { router as authRouter } from './routes/auth.js'
+
 
 
 // view engine setup
@@ -57,6 +59,8 @@ app.use(passUserToView)
 
 // router middleware
 app.use('/', indexRouter)
+app.use('/auth', authRouter)
+
 
 
 
