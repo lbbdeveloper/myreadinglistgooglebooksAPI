@@ -3,6 +3,36 @@
 <body class="homePage">
 <%- include('./partials/nav') %>
 
+<main>
+  <div class="container-lg py-3">
+    <% if (user?.profile.avatar) { %>
+      <div class="card shadow p-4 mx-auto my-5 bg-body rounded" style="width: 19rem;">
+        <img src="<%= user.profile.avatar %>" class="card-img-top rounded" alt="<%= user.profile.name %> avatar">
+        <div class="card-body">
+          <h3 class="titleText text-left">Hi <%= user.profile.name %> </h3>
+          <p class="card-text text-left">Check out the status of your reading list here!</p>
+          <a href="/myreadinglist/<%=user.profile._id%>" class="btn btn-outline-warning">
+           <span>CHECK MY LIST</span></a>
+        </div>
+      </div>
+    <% } else {%>
+    <div class="card shadow p-4 mx-auto my-5 bg-body rounded" style="width: 19rem;">
+      <img src="/images/book/sketches/placeholder.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h3 class="titleText text-left">Welcome to MyReadingList</h3>
+        <p class="card-text text-left">MyReadingList is a Web Application that keeps track of your reading list. No more excuses!  </p>
+        <a href="/auth/google" class="btn btn-outline-primary">
+          <img src="/images/auth/google/btn_google_light_normal_ios.svg" alt="">
+          Log in with Google</a>
+      </div>
+    </div>
+    <% } %>
+    </div>
 
+  
+
+
+
+</main>
 
 <%- include('./partials/footer') %>

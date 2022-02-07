@@ -21,6 +21,8 @@ import('./config/passport.js')
 // require routes
 import { router as indexRouter } from './routes/index.js'
 import { router as authRouter } from './routes/auth.js'
+import { router as profileRouter } from './routes/profiles.js'
+
 
 
 
@@ -60,6 +62,7 @@ app.use(passUserToView)
 // router middleware
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
+app.use('/myreadinglist', profileRouter)
 
 
 
