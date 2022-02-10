@@ -9,6 +9,8 @@ export {
 const router = Router()
 router.get('/', bookCtrl.index)
 router.post('/search', bookCtrl.search)
+router.get('/search', bookCtrl.index)
+router.get('/:id', bookCtrl.show);
 
 
 
