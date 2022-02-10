@@ -8,6 +8,8 @@ export {
 
 const router = Router()
 router.get('/', bookCtrl.index)
+router.post('/search', bookCtrl.search)
+
 
 
 function isLoggedIn(req, res, next) {
