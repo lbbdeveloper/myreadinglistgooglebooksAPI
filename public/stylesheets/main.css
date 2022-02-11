@@ -1,0 +1,36 @@
+
+@import url("https://fonts.googleapis.com/css?family=Patrick+Hand");
+.homePage{
+    background-color: #e7d8a5;
+}
+
+/* nav */
+.nav-logo{
+  width: 1.5rem;
+  margin: 0 .5rem;
+}
+
+.titleText{
+    font-family: "Patrick Hand", sans-serif;
+}
+
+
+#btn-back{
+  float: left;
+}
+
+.btn-2d{
+  color: #000000;
+  text-decoration: none;
+  font-style: oblique;
+}
+
+.btn-2d:hover {
+  color: #c28e00;
+}
+
+.custom-text {
+  font-style: italic;
+  font-size: small;
+}
+
