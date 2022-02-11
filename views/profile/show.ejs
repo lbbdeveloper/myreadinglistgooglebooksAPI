@@ -12,7 +12,36 @@
       <a href="/book" class="btn-2d"><span>BROWSE MORE BOOK</span> </a>
       </div>
       
-      
+      <div 
+      class="row row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 g5 g-sm-3 g-xxl-5 px-sm-5 px-4 py-3">
+      <% books.forEach((book) => { %>
+        <div class="col">
+          <div class="card shadow p-3 mx-auto bg-body rounded" style="width: 17rem;">
+            <div class="row">
+              <div class="col-8">
+                  <form 
+                  class="text-center" 
+                  action="/book/<%= book.googleId %>/removefromlist?_method=PATCH" 
+                  method="POST"
+                >
+                  <button class="btn btn-warning">
+                    X
+                  </button>
+                </form>
+              </div>
+              <div class="col">
+          </div>
+        </div>
+                <img src="<%= book.img %>" class="card-img-top" alt="Placeholder Img">
+                <div class="card-body">
+                  <h5 class="card-title text-center"><%= book.title  %> </h5>
+                  <p class="mb-0 text-center">Published Date</p>
+                  <p class="mb-3 text-center"><%= book.publishedDate %></p>
+                  </div>
+        </div>
+      </div>
+      <% }) %> 
+    </div>
     
          
     

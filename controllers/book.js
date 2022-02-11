@@ -7,8 +7,8 @@ export {
     search,
     index,
     show,
-
-
+    addToList,
+    removeFromList,
 }
 
 function search(req, res) {
@@ -26,7 +26,44 @@ function search(req, res) {
   })
 }
 
+function removeFromList(req, res) {
+  Book.findOne({ googleId: req.params.id })
+  .then(book => {
+    book.collectedBy.remove({ _id: req.user.profile._id })
+    book.save()
+    .then(()=> {
+      res.redirect(`/myreadinglist/${req.user.profile._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
+}
 
+
+function addToList(req, res) {
+
+  Profile.findById(req.user.profile._id)
+  .then(profile=>{
+  Book.findOne({ googleId: req.body.googleId })
+    .then(book => {
+      if (book){
+        book.collectedBy.push(req.user.profile._id)
+        book.save()
+        res.redirect(`/myreadinglist/${profile._id}`)
+      } else {
+        req.body.collectedBy = req.user.profile._id
+        Book.create(req.body)
+        res.redirect(`/myreadinglist/${profile._id}`)
+      }
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
+}
   
   function index(req, res) {
     

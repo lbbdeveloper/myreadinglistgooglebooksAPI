@@ -13,6 +13,9 @@ router.get('/search', bookCtrl.index)
 router.get('/:id', bookCtrl.show);
 
 
+router.patch('/:id/addtolist', isLoggedIn, bookCtrl.addToList)
+router.patch('/:id/removefromlist', isLoggedIn, bookCtrl.removeFromList)
+
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();

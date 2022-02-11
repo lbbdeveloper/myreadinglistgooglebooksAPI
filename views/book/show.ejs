@@ -5,7 +5,71 @@
 <%- include('../partials/nav') %>
 
 
+<main>
+  <div class="container-lg py-3">
 
+    <h6>Book Show Page</h6>
+    <div class="card shadow p-3 mx-auto bg-body rounded" style="width: 22rem;">
+      <% if (user) { %>
+      <div class="row">
+        <div class="col-9">
+            <a href="/book" class=" btn btn-outline-warning" id='btn-back'><span><<</span>  </a>
+        </div>
+        
+      </div>
+      <% } %>
+
+      <img src="<%= apiResult.imageLinks?.thumbnail %> " class="card-img-top" alt="Placeholder Img">
+      <div class="card-body">
+        <h5 class="card-title text-center"><%= apiResult.title  %> </h5>
+        <p class="mb-0 text-center">Authors:</p>
+        <p class="mb-1 text-center"><%= apiResult.authors %></p>
+        <p class="mb-0 text-center custom-text"> Description:</p>
+        <p class="mb-3 text-center custom-text"><%= apiResult.description %></p>
+      </div>
+        
+      <%# Display a button to add/remove the game from your collection %> 
+    <% if (!userHasBook) { %>
+      <form 
+        class="text-center" 
+        action="/book/<%= googleId %>/addtolist?_method=PATCH" 
+        method="POST"
+      >
+        <input type="text" name="title" hidden value="<%= apiResult.title %>">
+        <input type="text" name="googleId" hidden value="<%= googleId %>">
+        <input 
+          type="text" 
+          name="img" 
+          hidden 
+          value="<%= apiResult.imageLinks?.thumbnail %>"
+        >
+        <input 
+          type="text" 
+          name="publishedDate" 
+          hidden 
+          value="<%= apiResult.publishedDate %>"
+        >        
+
+        <button class="btn btn-outline-warning">
+          Add To Collection
+        </button> 
+      </form>
+    <% } %>
+    <% if (userHasBook) { %>
+      <form 
+        class="text-center" 
+        action="/book/<%= googleId %>/removefromlist?_method=PATCH" 
+        method="POST"
+      >
+        <button class="btn btn-danger">
+          Remove From Collection
+        </button>
+      </form>
+    <% } %> 
+
+  </div>
+  </div>
+</main>
 
 
 <%- include('../partials/footer') %>
